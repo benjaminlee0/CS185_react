@@ -1,0 +1,28 @@
+.Projects {
+    padding: 50px;
+    display: grid;
+    align-items: center;
+    row-gap: 50px;
+}
+
+
+
+.RideshareDiv {
+    font-family: 'Cambria';
+    background-color: rgb(228, 190, 23);
+    display: grid;
+    column-gap: 80px;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.RideshareImage {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.RideshareText {
+    grid-column: 2;
+    grid-row: 1;
+}
