@@ -1,0 +1,51 @@
+.MainDiv {
+    display: grid;
+    grid-auto-rows: 1;
+    grid-auto-columns: 2;
+}
+
+a:link{
+    color: rgb(6, 11, 80);
+    font-family: 'Cambria';
+    text-decoration: none;
+}
+
+a:visited{
+    color: rgb(6, 11, 80);
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.Thanks p {
+    text-align: center;
+}
+
+.Song p {
+    text-align: center;
+}
+
+.LinkDiv{
+    grid-row: 1;
+    grid-column: 1;
+    float: left;
+}
+
+.Links {
+    text-align: center;
+}
+
+.ImageDiv {
+    justify-self: flex-end;
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.Pic {
+    height: 100%;
+    width: 100%;
+    min-width: 600px;
+    min-height: 600px;
+}

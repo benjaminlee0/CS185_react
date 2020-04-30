@@ -1,0 +1,32 @@
+.NavList{
+    list-style-type: none;
+    background-color: rgb(24, 24, 68);
+    font-family: 'Cambria';
+    margin: 0;
+    top: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+li{
+    float: left;
+}
+
+.NavList button{
+    font-family: 'Cambria';
+    background: none;
+    border: none;
+    margin: 0;
+    outline: none;
+    display: block;
+    padding: 10px 30px;
+    font-size: 20px;
+    color: aliceblue;
+}
+
+
+
+.NavList button:hover{
+    background-color: rgb(61, 61, 151);
+    text-shadow: black;
+}

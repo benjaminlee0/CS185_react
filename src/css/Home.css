@@ -1,0 +1,17 @@
+.DivHeader {
+    font-family: 'Cambria';
+    text-align: center;
+    font-size: 25px;
+}
+
+.Profile {
+    max-width: 70%;
+    height:auto;
+    border-radius: 50%;
+}
+
+.DivProfilePic {
+    font-family: 'Cambria';
+    display: flex;
+    padding: 100px;
+}
