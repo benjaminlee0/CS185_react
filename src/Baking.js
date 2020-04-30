@@ -9,9 +9,8 @@ import {SRLWrapper} from "simple-react-lightbox";
 export class Baking extends Component{
   render(){
     return (
-
+      <SRLWrapper>
         <div className="Baking">
-          <SRLWrapper>
 
             <div className="Matcha">
 
@@ -69,8 +68,8 @@ export class Baking extends Component{
 
             </div>
 
-            </SRLWrapper>
         </div>
+        </SRLWrapper>
     );
   }
 }
