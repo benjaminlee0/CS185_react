@@ -5,7 +5,6 @@ import SimpleReactLightbox from "simple-react-lightbox";
 export class App extends Component{
 
 
-
   render(){
     return (
       <div>

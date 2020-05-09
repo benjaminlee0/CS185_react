@@ -1,0 +1,51 @@
+label {
+    font-family: 'Cambria';
+    font-size: 18px;
+}
+
+.name {
+    width: 402px;
+}
+
+.largeInput {
+    font-family: 'Cambria';
+    width: 400px;
+    height: 90px;
+    resize: none;
+}
+
+.email {
+    width: 400px;
+}
+
+.Main {
+    background-color: rgb(208, 223, 255);
+    max-width: 56%;
+    max-height: 85%;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.Form {
+    left: 50%;
+}
+
+.submit {
+    width: 404px;
+    height: 50px;
+    font-family: 'Cambria';
+    background-color: rgb(24, 24, 68);
+    color: aliceblue;
+    font-size: 16px;
+    border: none;
+}
+
+button:hover{
+    background-color: rgb(61, 61, 151);
+    text-shadow: black;
+}
+
+button:focus {
+    background-color: rgb(86, 86, 124);
+    text-shadow: aqua;
+  }

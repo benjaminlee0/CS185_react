@@ -31,6 +31,9 @@ export class Navbar extends Component{
             },
             {
               title: 'About'
+            },
+            {
+              title: 'Guest Book'
             }
           ]
         return(
