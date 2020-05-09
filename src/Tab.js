@@ -4,7 +4,7 @@ import './css/Navbar.css';
 export class Tab extends Component{
 
     addStyling = () => {
-        if(this.props.tabs.title == this.props.activeTab){
+        if(this.props.tabs.title === this.props.activeTab){
             return {backgroundColor: 'rgb(61, 61, 151)'}
         }else{
             return {backgroundColor: ''}

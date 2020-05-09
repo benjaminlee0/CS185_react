@@ -13,7 +13,7 @@ export class Home extends Component{
               <h1>Benjamin Lee</h1>
           </div>
 
-        <div class="DivProfilePic">
+        <div className="DivProfilePic">
             <SRLWrapper>
             <div>
                 <img className="Profile" src={profile} alt="Benjamin Lee"></img>

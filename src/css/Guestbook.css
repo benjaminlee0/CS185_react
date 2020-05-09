@@ -1,0 +1,17 @@
+.MainDiv{
+    display: grid;
+    columns: 3;
+}
+
+.Guestform{
+    grid-row: 1;
+    grid-column: 1;
+    padding: 30px;
+}
+
+.Guestlist{
+    grid-row: 1;
+    grid-column: 2;
+    padding: 30px;
+    right: 50%;
+}
