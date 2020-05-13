@@ -41,7 +41,6 @@ export class Guestlist extends Component{
   render(){
     var messageList = this.state.messageArray.map((value, index)=>{
         var mname = value.name;
-        var bio = value.bio;
         var message = value.message;
         var bio = "";
         if(value.bio){
@@ -54,7 +53,7 @@ export class Guestlist extends Component{
         var H = +timeString.substr(0, 2);
         var h = H % 12 || 12;
         var ampm = (H < 12 || H === 24) ? "AM" : "PM";
-        var timeString = h + timeString.substr(2, 3) + " " + ampm;
+        timeString = h + timeString.substr(2, 3) + " " + ampm;
         var time = timeString;
 
         return(

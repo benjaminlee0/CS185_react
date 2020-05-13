@@ -34,6 +34,9 @@ export class Navbar extends Component{
             },
             {
               title: 'Guest Book'
+            },
+            {
+              title: 'Movies'
             }
           ]
         return(
