@@ -4,11 +4,13 @@ import Baking from './Baking'
 import Projects from './Projects'
 import About from './About'
 import Guestbook from './Guestbook'
+import Movies from './Movies'
 
 export class Body extends Component{
 
     displayContent = () =>{
-        var activeTab = this.props.activeTab
+        var activeTab = this.props.activeTab;
+        console.log(activeTab);
         if(activeTab == "Home"){
             return <Home/>;
         }else if(activeTab == "Projects"){
@@ -19,6 +21,8 @@ export class Body extends Component{
             return <About/>;
         }else if(activeTab == "Guest Book"){
             return <Guestbook/>;
+        }else if(activeTab == "Movies"){
+            return <Movies/>;
         }
     }
 
