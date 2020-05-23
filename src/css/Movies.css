@@ -4,12 +4,19 @@
     /* align-items: stretch; */
     max-width: 100vw;
     max-height: 100vh;
-    padding-left: 10vh;
+    padding-left: 8vh;
 }
 
 .MovieImg {
     height: 300px;
     width: 200px;
-    padding-top: 10vh;
-    padding-left: 7vw;
+}
+
+.MovieItem{
+    margin: 18px;
+}
+
+
+.MovieImg:hover {
+    opacity: 0.5;
 }
