@@ -37,6 +37,9 @@ export class Navbar extends Component{
             },
             {
               title: 'Movies'
+            },
+            {
+              title: 'Add Movie'
             }
           ]
         return(

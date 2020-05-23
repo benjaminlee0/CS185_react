@@ -20,6 +20,7 @@ export class Moviebox extends Component{
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
         this.clickClose = this.clickClose.bind(this);
         this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.deleteButton = this.deleteButton.bind(this);
     }
 
     componentDidMount(){
@@ -28,7 +29,6 @@ export class Moviebox extends Component{
         // }
         disableScroll.on();
         document.addEventListener('mousedown', this.clickClose);
-        console.log("listener added");
     }
 
     componentWillUnmount(){
@@ -48,6 +48,12 @@ export class Moviebox extends Component{
         }
     }
 
+    deleteButton(){
+        console.log("delete clicked");
+        this.props.handleClose();
+        this.props.handleDelete();
+    }
+
 
     render(){
 
@@ -58,10 +64,11 @@ export class Moviebox extends Component{
                     <img src={this.state.poster} className="MovieboxImg" id="poster"></img>
                 </div>
                 <div className = "Text">
-                <h1 className="Title">{this.state.title}</h1>
-                <h2 className="Director">{this.state.director}</h2>
+                    <h1 className="Title">{this.state.title}</h1>
+                    <h2 className="Director">{this.state.director}</h2>
                     <p className="Rating">{this.state.rating} on IMDB</p>
-                    </div>
+                    <button onClick={this.deleteButton} className="MovieDeleteButton">Remove Movie</button>
+                </div>
             </div>
         </div>
 

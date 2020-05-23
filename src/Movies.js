@@ -4,6 +4,7 @@ import { SRLWrapper } from "simple-react-lightbox";
 import Moviebox from './Moviebox';
 import ReactDOM from 'react-dom';
 import './css/Movies.css';
+import {db} from './config';
 
 export class Movies extends Component{
 
@@ -11,37 +12,29 @@ export class Movies extends Component{
 
         super(props);
         this.state = {
-            opt: {
-                thumbnails: {
-                    showThumbnails: "false"
-                },
-                settings: {
-                    disableWheelControls: true
-                },
-                caption: {
-                    captionColor: "red"
-                }
-            },
             added: "false",
             lightbox: '',
+            current_list: "movieids",
             movieArray: []
         }
 
         this.componentDidMount = this.componentDidMount.bind(this);
         this.addLightbox = this.addLightbox.bind(this);
         this.removeLightbox = this.removeLightbox.bind(this);
+        this.deleteMovie = this.deleteMovie.bind(this);
+        this.getData = this.getData.bind(this);
     }
 
     componentDidMount(){
         var data = [];
-        const r0 = axios.get('http://www.omdbapi.com/?i=tt0816692&apikey=64551cfe');
-        const r1 = axios.get('http://www.omdbapi.com/?i=tt3460252&apikey=64551cfe');
-        const r2 = axios.get('http://www.omdbapi.com/?i=tt7131622&apikey=64551cfe');
-        const r3 = axios.get('http://www.omdbapi.com/?i=tt0468569&apikey=64551cfe');
-        const r4 = axios.get('http://www.omdbapi.com/?i=tt0080684&apikey=64551cfe');
-        const r5 = axios.get('http://www.omdbapi.com/?i=tt1375666&apikey=64551cfe');
-        const r6 = axios.get('http://www.omdbapi.com/?i=tt0075314&apikey=64551cfe');
-        const r7 = axios.get('http://www.omdbapi.com/?i=tt0032599&apikey=64551cfe');
+        const r0 = axios.get('https://www.omdbapi.com/?i=tt0816692&apikey=64551cfe');
+        const r1 = axios.get('https://www.omdbapi.com/?i=tt3460252&apikey=64551cfe');
+        const r2 = axios.get('https://www.omdbapi.com/?i=tt7131622&apikey=64551cfe');
+        const r3 = axios.get('https://www.omdbapi.com/?i=tt0468569&apikey=64551cfe');
+        const r4 = axios.get('https://www.omdbapi.com/?i=tt0080684&apikey=64551cfe');
+        const r5 = axios.get('https://www.omdbapi.com/?i=tt1375666&apikey=64551cfe');
+        const r6 = axios.get('https://www.omdbapi.com/?i=tt0075314&apikey=64551cfe');
+        const r7 = axios.get('https://www.omdbapi.com/?i=tt0032599&apikey=64551cfe');
 
         const begin = this;
 
@@ -57,6 +50,46 @@ export class Movies extends Component{
         this.setState({
             movieArray: data
         })
+
+    }
+
+    getData(){
+        // console.log(this.state.current_list);
+        // const fetchdata = [];
+
+        // db.collection(this.state.current_list).get().then(snapshot=>{
+        //     snapshot.forEach(doc=>{
+        //         const id = doc.data().id;
+        //         const url = `https://www.omdbapi.com/?i=${id}&apikey=64551cfe`;
+        //         const axiosquery = (url) => axios.get(url);
+        //         console.log(axiosquery);
+        //         fetchdata.push(axiosquery);
+        //     });
+        // })
+
+        // const begin = this;
+
+        // var moviedata = [];
+
+        // axios.all(fetchdata).then(axios.spread((...responses)=>{
+        //     console.log("in all");
+        //     console.log(fetchdata);
+        //     console.log(responses);
+        //     responses.forEach(function(item){
+        //         console.log("in for each");
+        //         moviedata.push(item.data);
+        //         begin.setState({
+        //             added: "true"
+        //         })
+        //     })
+        // }))
+
+        // console.log(moviedata); 
+
+        // this.setState({
+        //     movieArray: moviedata
+        // })
+
     }
 
     addLightbox(title, director, poster, rating){
@@ -68,7 +101,8 @@ export class Movies extends Component{
                 director: director,
                 poster: poster,
                 rating: rating,
-                handleClose: this.removeLightbox
+                handleClose: this.removeLightbox,
+                handleDelete: this.deleteMovie
             }
         )
         var bod = document.getElementById("Lightbox");
@@ -79,8 +113,11 @@ export class Movies extends Component{
     }
 
     removeLightbox(){
-        console.log("in remove ligthobx");
         ReactDOM.unmountComponentAtNode(document.getElementById("Lightbox"));
+    }
+
+    deleteMovie(){
+        console.log("deleting movie");
     }
 
     render(){

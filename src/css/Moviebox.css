@@ -36,6 +36,7 @@
 .Text {
     width: 30vw;
     text-align: center;
+    margin-left: 1vw;
     font-size: 2vh;
     font-size: 1vw;
 }
@@ -45,6 +46,14 @@
     max-height: 100%;
 }
 
-.MovieImg:hover {
-    opacity: 0.5;
+.MovieDeleteButton{
+    width: 10vw;
+    height: 5vh;
+    margin-top: 4vh;
+    margin-left: 0.5vw;
+    font-family: 'Cambria';
+    background-color: rgb(161, 119, 12);
+    color: bisque;
+    font-size: 16px;
+    border: none;
 }
