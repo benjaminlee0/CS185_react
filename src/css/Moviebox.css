@@ -57,3 +57,11 @@
     font-size: 16px;
     border: none;
 }
+
+.MovieboxDrop{
+    text-align: left;
+    width: 15vw;
+    margin-top: 4vh;
+    margin-left: 4.3vw;
+    background-color: rgb(161, 119, 12);
+}

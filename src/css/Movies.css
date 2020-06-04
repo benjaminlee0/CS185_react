@@ -20,3 +20,62 @@
 .MovieImg:hover {
     opacity: 0.5;
 }
+
+.ListDiv{
+
+}
+
+.ListDrop {
+    width: 20vw;
+    position: relative;
+}
+
+.SearchForm{
+
+}
+
+.search_term{
+    position: relative;
+    width: 10vw;
+}
+
+.search{
+    position: relative;
+    width: 9.5vw;
+    height: 3vh;
+    left: 10.5vw;
+    bottom: 5.9vh;
+    border-radius: 5px;
+    font-family: 'Cambria';
+    background-color: rgb(161, 119, 12);
+    color: bisque;
+    font-size: 16px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+
+button:hover{
+    background-color: rgb(119, 82, 27);
+    text-shadow: black;
+}
+
+button:focus {
+    background-color: rgb(187, 140, 70);
+    text-shadow: rgb(80, 29, 0);
+  }
+
+.load {
+    position: relative;
+    left: 45vw;
+    background-color: rgb(161, 119, 12);
+    width: 10vw;
+    height: 5vh;
+    margin-top: 40vh;
+    margin-bottom: 3vh;
+    border: none;
+    color: bisque;
+    font-size: 16px;
+    font-family: 'Cambria';
+    display: none;
+}

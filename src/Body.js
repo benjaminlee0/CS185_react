@@ -6,6 +6,7 @@ import About from './About'
 import Guestbook from './Guestbook'
 import Movies from './Movies'
 import AddMovie from './AddMovie'
+import AddList from './Addlist'
 export class Body extends Component{
 
     displayContent = () =>{
@@ -25,6 +26,8 @@ export class Body extends Component{
             return <Movies/>;
         }else if(activeTab == "Add Movie"){
             return <AddMovie/>;
+        }else if(activeTab == "Add List"){
+            return <AddList/>
         }
     }
 
