@@ -5,6 +5,8 @@ import Moviebox from './Moviebox';
 import ReactDOM from 'react-dom';
 import './css/Movies.css';
 import {db} from './config';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 export class Movies extends Component{
 
@@ -12,9 +14,14 @@ export class Movies extends Component{
 
         super(props);
         this.state = {
+            deleted: "false",
             added: "false",
             lightbox: '',
-            current_list: "movieids",
+            current_list: "All",
+            search_term: '',
+            total_count: '',
+            current_count: 16,
+            list_options: [],
             movieArray: []
         }
 
@@ -23,76 +30,63 @@ export class Movies extends Component{
         this.removeLightbox = this.removeLightbox.bind(this);
         this.deleteMovie = this.deleteMovie.bind(this);
         this.getData = this.getData.bind(this);
+        this.onSelect = this.onSelect.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleLoad = this.handleLoad.bind(this);
+        this.checkLoad = this.checkLoad.bind(this);
     }
 
     componentDidMount(){
-        var data = [];
-        const r0 = axios.get('https://www.omdbapi.com/?i=tt0816692&apikey=64551cfe');
-        const r1 = axios.get('https://www.omdbapi.com/?i=tt3460252&apikey=64551cfe');
-        const r2 = axios.get('https://www.omdbapi.com/?i=tt7131622&apikey=64551cfe');
-        const r3 = axios.get('https://www.omdbapi.com/?i=tt0468569&apikey=64551cfe');
-        const r4 = axios.get('https://www.omdbapi.com/?i=tt0080684&apikey=64551cfe');
-        const r5 = axios.get('https://www.omdbapi.com/?i=tt1375666&apikey=64551cfe');
-        const r6 = axios.get('https://www.omdbapi.com/?i=tt0075314&apikey=64551cfe');
-        const r7 = axios.get('https://www.omdbapi.com/?i=tt0032599&apikey=64551cfe');
-
-        const begin = this;
-
-        axios.all([r0,r1,r2,r3,r4,r5,r6,r7]).then(axios.spread((...responses)=>{
-            responses.forEach(function(item){
-                data.push(item.data);
-                begin.setState({
+        const listdata = [];
+        db.collection('Listnames').get().then(snapshot=>{
+            snapshot.forEach(doc=>{
+                listdata.push(doc.data().id);
+                this.setState({
                     added: "true"
                 })
-            })
-        }))
-        
-        this.setState({
-            movieArray: data
+            });
         })
+
+        this.setState({
+            list_options: listdata
+        })
+
+        this.getData();
 
     }
 
     getData(){
-        // console.log(this.state.current_list);
-        // const fetchdata = [];
+        console.log("mount");
 
-        // db.collection(this.state.current_list).get().then(snapshot=>{
-        //     snapshot.forEach(doc=>{
-        //         const id = doc.data().id;
-        //         const url = `https://www.omdbapi.com/?i=${id}&apikey=64551cfe`;
-        //         const axiosquery = (url) => axios.get(url);
-        //         console.log(axiosquery);
-        //         fetchdata.push(axiosquery);
-        //     });
-        // })
+        const moviedata = [];
 
-        // const begin = this;
+        this.setState({
+            total_count: 0,
+        })
+        db.collection('movies').get().then(snapshot=>{
+            snapshot.forEach(doc=>{
+                const docArray = doc.data().lists;
+                if(docArray.includes(this.state.current_list)){
+                    moviedata.push(doc.data());
+                }
+                this.setState({
+                    added: "true",
+                    total_count: this.state.total_count+1
+                })
+            });
+        })
 
-        // var moviedata = [];
 
-        // axios.all(fetchdata).then(axios.spread((...responses)=>{
-        //     console.log("in all");
-        //     console.log(fetchdata);
-        //     console.log(responses);
-        //     responses.forEach(function(item){
-        //         console.log("in for each");
-        //         moviedata.push(item.data);
-        //         begin.setState({
-        //             added: "true"
-        //         })
-        //     })
-        // }))
+        this.setState({
+            movieArray: moviedata,
+        })
 
-        // console.log(moviedata); 
-
-        // this.setState({
-        //     movieArray: moviedata
-        // })
+        this.checkLoad();
 
     }
 
-    addLightbox(title, director, poster, rating){
+    addLightbox(title, director, poster, rating, id, lists){
         console.log("in addlightbox");
         var newbox = React.createElement(
             Moviebox,
@@ -101,6 +95,9 @@ export class Movies extends Component{
                 director: director,
                 poster: poster,
                 rating: rating,
+                id: id,
+                lists: lists,
+                alllists: this.state.list_options,
                 handleClose: this.removeLightbox,
                 handleDelete: this.deleteMovie
             }
@@ -116,19 +113,108 @@ export class Movies extends Component{
         ReactDOM.unmountComponentAtNode(document.getElementById("Lightbox"));
     }
 
-    deleteMovie(){
+    deleteMovie(id){
         console.log("deleting movie");
+        const pass = this;
+        db.collection('movies').doc(id).delete().then(function(){
+            pass.getData();
+        });
+    }
+
+    onSelect(option){
+        this.setState({
+            current_list: option.value,
+            current_count: 16
+        })
+        this.getData();
+    }
+
+    handleChange(event){
+        var newstate = {};
+        newstate[event.target.id] = event.target.value;
+        this.setState(newstate);
+        console.log(newstate);
+    }
+
+    handleSearch(event){
+        event.preventDefault();
+        console.log("in handlesearch");
+        const moviedata = [];
+        if(this.state.search_term == ''){
+            this.getData();
+        }else{
+            this.setState({
+                total_count: 0,
+                current_count: 16
+            })
+            db.collection('movies').get().then(snapshot=>{
+                snapshot.forEach(doc=>{
+                    const doctitle = doc.data().title;
+                    if(doctitle == this.state.search_term){
+                        moviedata.push(doc.data());
+                    }
+                    this.setState({
+                        added: "true",
+                        total_count: this.state.total_count+1
+                    })
+                });
+            })
+            this.setState({
+                movieArray: moviedata,
+            })
+        }
+        this.checkLoad();
+    }
+
+    handleLoad(){
+        var currcount = this.state.current_count;
+        var totalcount = this.state.total_count;
+        if((totalcount - currcount) <= 8){
+            this.setState({
+                current_count: this.state.total_count
+            });
+            currcount = totalcount;
+        }else{
+            this.setState({
+                current_count: this.state.current_count+8
+            });
+            currcount = currcount+8;
+        }
+
+        if(currcount == totalcount){
+            document.getElementById('load').style.display = "none";
+        }else{
+            document.getElementById('load').style.display = "block";
+        }
+    }
+
+    checkLoad(){
+        if(this.state.current_count == this.state.total_count){
+            document.getElementById('load').style.display = "none";
+        }else{
+            document.getElementById('load').style.display = "block";
+        }
+        this.setState({
+            deleted: "true"
+        })
     }
 
     render(){
-        var movieList = this.state.movieArray.map((value, index)=>{
-        var title = value.Title;
-        var director = value.Director;
-        var imdb = value.imdbRating;
-        var poster = value.Poster;
+        console.log(this.state.total_count);
+        var sliceamount = this.state.total_count;
+        if(this.state.total_count > this.state.current_count){
+            sliceamount = this.state.current_count;
+        }
+        var movieList = this.state.movieArray.slice(0, sliceamount).map((value, index)=>{
+        var title = value.title;
+        var director = value.director;
+        var imdb = value.imdb;
+        var poster = value.poster;
+        var id = value.id;
+        var lists = value.lists;
         return(
             <div className = "MovieItem">
-                    <img key={index} src={poster} alt={title} className="MovieImg" onClick={()=>{this.addLightbox(title, director, poster, imdb)}}></img>
+                    <img key={index} src={poster} alt={title} className="MovieImg" onClick={()=>{this.addLightbox(title, director, poster, imdb, id, lists)}}></img>
             </div>
         )
     })
@@ -136,10 +222,19 @@ export class Movies extends Component{
     return (
         <div>
         <div className="Lightbox" id="Lightbox">
-
+        </div>
+        <div className = "ListDiv">
+            <Dropdown className="ListDrop" options={this.state.list_options} onChange={this.onSelect} value={this.state.current_list} placeholder="Select an option"/>
+            <form className = "SearchForm" id = "SearchForm">
+                <input type= "text" className="search_term" id= "search_term" name = "search_term" value = {this.state.search_term} onChange={this.handleChange}></input><br></br><br></br>
+                <button className="search" id="search" type="search" onClick = {this.handleSearch}>Search</button>
+            </form>
         </div>
         <div className = "MovieDiv">
             {movieList}
+        </div>
+        <div className = "LoadMoreDiv">
+        <button className="load" id="load" type="load" onClick = {this.handleLoad}>Load More</button>
         </div>
         </div>
     );

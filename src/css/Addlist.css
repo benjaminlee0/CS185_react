@@ -1,0 +1,55 @@
+.MovieFormDiv{
+    position: relative;
+    left: 23vw;
+    top: 25vh;
+    max-width: 55vw;
+    max-height: 50vh;
+    background-color: rgb(31, 31, 31);
+    border: 3px solid #888;
+}
+
+.ListFormHeader{
+    position: relative;
+    font-family: 'Cambria';
+    color: antiquewhite;
+    font-size: 36px;
+    align-self: center;
+    left: 18vw;
+    font-family: 'Cambria';
+}
+
+.MovieForm{
+    position: relative;
+    left: 22vw;
+}
+
+.ListFormLabel{
+    color: bisque;
+    position: relative;
+    left: 1.4vw;
+}
+
+.id{
+    max-width: 11vw;
+}
+
+.add{
+    width: 10.7vw;
+    height: 8vh;
+    font-family: 'Cambria';
+    background-color: rgb(161, 119, 12);
+    color: bisque;
+    font-size: 16px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+button:hover{
+    background-color: rgb(119, 82, 27);
+    text-shadow: black;
+}
+
+button:focus {
+    background-color: rgb(187, 140, 70);
+    text-shadow: rgb(80, 29, 0);
+  }
