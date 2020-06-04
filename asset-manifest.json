@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/CS185_react/static/css/main.97e09ab4.chunk.css",
-    "main.js": "/CS185_react/static/js/main.ed5c1314.chunk.js",
-    "main.js.map": "/CS185_react/static/js/main.ed5c1314.chunk.js.map",
+    "main.css": "/CS185_react/static/css/main.113e44f8.chunk.css",
+    "main.js": "/CS185_react/static/js/main.1869ad7a.chunk.js",
+    "main.js.map": "/CS185_react/static/js/main.1869ad7a.chunk.js.map",
     "runtime-main.js": "/CS185_react/static/js/runtime-main.5e804972.js",
     "runtime-main.js.map": "/CS185_react/static/js/runtime-main.5e804972.js.map",
-    "static/js/2.5e8e3958.chunk.js": "/CS185_react/static/js/2.5e8e3958.chunk.js",
-    "static/js/2.5e8e3958.chunk.js.map": "/CS185_react/static/js/2.5e8e3958.chunk.js.map",
+    "static/css/2.ee241de9.chunk.css": "/CS185_react/static/css/2.ee241de9.chunk.css",
+    "static/js/2.6d7ec432.chunk.js": "/CS185_react/static/js/2.6d7ec432.chunk.js",
+    "static/js/2.6d7ec432.chunk.js.map": "/CS185_react/static/js/2.6d7ec432.chunk.js.map",
     "index.html": "/CS185_react/index.html",
-    "precache-manifest.245e5487aa974328eb91f07d4b3231e8.js": "/CS185_react/precache-manifest.245e5487aa974328eb91f07d4b3231e8.js",
+    "precache-manifest.498373889c7b4b618c4f9168181995e1.js": "/CS185_react/precache-manifest.498373889c7b4b618c4f9168181995e1.js",
     "service-worker.js": "/CS185_react/service-worker.js",
-    "static/css/main.97e09ab4.chunk.css.map": "/CS185_react/static/css/main.97e09ab4.chunk.css.map",
-    "static/js/2.5e8e3958.chunk.js.LICENSE.txt": "/CS185_react/static/js/2.5e8e3958.chunk.js.LICENSE.txt",
+    "static/css/2.ee241de9.chunk.css.map": "/CS185_react/static/css/2.ee241de9.chunk.css.map",
+    "static/css/main.113e44f8.chunk.css.map": "/CS185_react/static/css/main.113e44f8.chunk.css.map",
+    "static/js/2.6d7ec432.chunk.js.LICENSE.txt": "/CS185_react/static/js/2.6d7ec432.chunk.js.LICENSE.txt",
     "static/media/aboutpic.PNG": "/CS185_react/static/media/aboutpic.123016ff.PNG",
     "static/media/coffee1.jpg": "/CS185_react/static/media/coffee1.d693e4a5.jpg",
     "static/media/coffee2.jpg": "/CS185_react/static/media/coffee2.1160c803.jpg",
@@ -22,8 +24,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.5e804972.js",
-    "static/js/2.5e8e3958.chunk.js",
-    "static/css/main.97e09ab4.chunk.css",
-    "static/js/main.ed5c1314.chunk.js"
+    "static/css/2.ee241de9.chunk.css",
+    "static/js/2.6d7ec432.chunk.js",
+    "static/css/main.113e44f8.chunk.css",
+    "static/js/main.1869ad7a.chunk.js"
   ]
 }
