@@ -20,7 +20,7 @@ export class Movies extends Component{
             current_list: "All",
             search_term: '',
             total_count: '',
-            current_count: 16,
+            current_count: '',
             list_options: [],
             movieArray: []
         }
@@ -57,32 +57,38 @@ export class Movies extends Component{
     }
 
     getData(){
+        document.getElementById('load').style.display = "none";
         console.log("mount");
 
         const moviedata = [];
 
         this.setState({
             total_count: 0,
-        })
-        db.collection('movies').get().then(snapshot=>{
-            snapshot.forEach(doc=>{
-                const docArray = doc.data().lists;
-                if(docArray.includes(this.state.current_list)){
-                    moviedata.push(doc.data());
-                }
-                this.setState({
-                    added: "true",
-                    total_count: this.state.total_count+1
-                })
-            });
-        })
+            current_count: 16
+        },
+        function(){
+            db.collection('movies').get().then(snapshot=>{
+                snapshot.forEach(doc=>{
+                    const docArray = doc.data().lists;
+                    if(docArray.includes(this.state.current_list)){
+                        moviedata.push(doc.data());
+                        this.setState({
+                        total_count: this.state.total_count+1
+                        },this.checkLoad)
+                    }
+                    this.setState({
+                        added: "true",
+                    })
+                });
+            })
+    
+    
+            this.setState({
+                movieArray: moviedata,
+            })
+        }
+        )
 
-
-        this.setState({
-            movieArray: moviedata,
-        })
-
-        this.checkLoad();
 
     }
 
@@ -124,7 +130,6 @@ export class Movies extends Component{
     onSelect(option){
         this.setState({
             current_list: option.value,
-            current_count: 16
         })
         this.getData();
     }
@@ -152,10 +157,12 @@ export class Movies extends Component{
                     const doctitle = doc.data().title;
                     if(doctitle == this.state.search_term){
                         moviedata.push(doc.data());
+                        this.setState({
+                            total_count: this.state.total_count+1
+                        })
                     }
                     this.setState({
                         added: "true",
-                        total_count: this.state.total_count+1
                     })
                 });
             })
@@ -172,27 +179,23 @@ export class Movies extends Component{
         if((totalcount - currcount) <= 8){
             this.setState({
                 current_count: this.state.total_count
-            });
-            currcount = totalcount;
+            }, this.checkLoad);
         }else{
             this.setState({
                 current_count: this.state.current_count+8
-            });
-            currcount = currcount+8;
-        }
-
-        if(currcount == totalcount){
-            document.getElementById('load').style.display = "none";
-        }else{
-            document.getElementById('load').style.display = "block";
+            }, this.checkLoad);
         }
     }
 
     checkLoad(){
-        if(this.state.current_count == this.state.total_count){
+        console.log("current count:", this.state.current_count);
+        console.log("total count:", this.state.total_count);
+        if(this.state.current_count >= this.state.total_count){
             document.getElementById('load').style.display = "none";
+            console.log("hiding");
         }else{
             document.getElementById('load').style.display = "block";
+            console.log("displaying");
         }
         this.setState({
             deleted: "true"
@@ -200,7 +203,6 @@ export class Movies extends Component{
     }
 
     render(){
-        console.log(this.state.total_count);
         var sliceamount = this.state.total_count;
         if(this.state.total_count > this.state.current_count){
             sliceamount = this.state.current_count;
