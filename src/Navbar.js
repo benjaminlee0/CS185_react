@@ -43,6 +43,9 @@ export class Navbar extends Component{
             },
             {
               title: 'Add List'
+            },
+            {
+              title: 'Graph'
             }
           ]
         return(

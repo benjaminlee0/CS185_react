@@ -52,6 +52,7 @@ export class AddMovie extends Component{
                 director: movie.Director,
                 imdb: movie.imdbRating,
                 poster: movie.Poster,
+                actors: movie.Actors,
                 lists: [
                     "All"
                 ]
